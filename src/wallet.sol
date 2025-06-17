@@ -22,4 +22,9 @@ contract EtherWallet{
         require(sent,"Transaction failed");
     }
 
+    // check balance
+    function checkBalance() external view returns (uint256){
+        return address(this).balance;
+    }
+
 }
