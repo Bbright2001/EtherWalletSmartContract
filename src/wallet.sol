@@ -10,9 +10,16 @@ contract EtherWallet{
     constructor() {
         owner = msg.sender;
     }
-
-
+    // Accepts Ether
    receive() external payable{}
 
+    function withdraw(address payable _to, uint256 _amount) external payable {
+        require(owner == msg.sender, "You are not Owner");
+
+        _amount = msg.value;
+
+        (bool sent,) = _to.call{value: _amount}("");
+        require(sent,"Transaction failed");
+    }
 
 }
