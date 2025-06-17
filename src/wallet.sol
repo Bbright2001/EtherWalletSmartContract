@@ -15,8 +15,11 @@ contract EtherWallet{
 
     function withdraw(address payable _to, uint256 _amount) external payable {
         require(owner == msg.sender, "You are not Owner");
+        require(_to != address(0),"invalid receipient");
+        require(_amount > 0, "invalid amount");
+        require(address(this).balance >= _amount, "invalid balance");
 
-        _amount = msg.value;
+
 
         (bool sent,) = _to.call{value: _amount}("");
         require(sent,"Transaction failed");
