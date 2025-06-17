@@ -12,5 +12,7 @@ contract EtherWallet{
     }
 
 
+   receive() external payable{}
+
 
 }
